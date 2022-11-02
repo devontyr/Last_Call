@@ -3,6 +3,7 @@ import { GoogleLogin } from 'react-google-login';
 import React, {useEffect} from 'react';
 
 
+
 function Login() {
     const handleLogin = async googleData => {
         const res = await fetch("/api/v1/auth/google", {
@@ -24,16 +25,15 @@ function Login() {
     //         scope: ''
     //     });
     //     };
-    //     gapi.load('client:auth2', initClient);
     // });
 
 
-    // const onSuccess = (res) => {
-    //     console.log('success:', res);
-    // };
-    // const onFailure = (err) => {
-    //     console.log('failed:', err);
-    // };
+    const onSuccess = (res) => {
+        console.log('success:', res);
+    };
+    const onFailure = (err) => {
+        console.log('failed:', err);
+    };
 
     return (
     // <GoogleLogin
@@ -48,8 +48,8 @@ function Login() {
     <GoogleLogin
     clientId="596749184708-9paaqi0f7cqqqrd1tv1iht4kk6hb280b.apps.googleusercontent.com"
     buttonText="Log in with Google"
-    onSuccess={handleLogin}
-    onFailure={handleLogin}
+    onSuccess={onSuccess}
+    onFailure={onFailure}
     cookiePolicy={'single_host_origin'}
 />
 
