@@ -3,7 +3,8 @@ import { useForm, Controller } from "react-hook-form";
 import Head from "next/head";
 import Select from "react-select";
 import styles from "../styles/Home.module.scss";
-import NavBar from "../components/NavBar"
+import NavBar from "../components/NavBar";
+import Login from "../components/Login";
 
 
 function Home() {
@@ -64,7 +65,7 @@ function Home() {
       <button onClick={() => getUserName()}> Get name</button>
       {recievedName != undefined ? recievedName.map((value) => <div key = {value.id}> {value.exampleColumn} </div>) : " "}
     </div> 
-
+      <Login />
 
     </div>
   );
