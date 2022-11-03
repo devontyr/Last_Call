@@ -1,0 +1,17 @@
+.AboutPageStyle {
+    background-color: rgb(116, 158, 31);
+}
+
+.main_header {
+    background-image: url("images/bwphone.jpeg") ;
+    background-size: cover;
+}
+
+.box { 
+    height: 2rem;
+    width: 2rem;
+    padding: 20px;
+    margin: 50px;
+    border: 10px solid rgb(11, 66, 68);
+    background-color: cadetblue;
+}

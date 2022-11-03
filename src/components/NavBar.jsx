@@ -1,8 +1,8 @@
-import styles from "./NavBar.module.css"
+import styles from ".//NavBar.module.css"
 
 function NavBar() {
     return(
-        <div className={styles.navBarStyle}>this is the nav bar</div>
+        <div className={styles.navBarStyle}> this is the nav bar </div>
     )
 }
 

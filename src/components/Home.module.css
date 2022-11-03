@@ -1,0 +1,12 @@
+.HomePageStyle {
+    background-color: rgb(194, 20, 93);
+}
+
+.box { 
+    height: 2rem;
+    width: 2rem;
+    padding: 20px;
+    margin: 50px;
+    border: 10px solid rgb(11, 66, 68);
+    background-color: cadetblue;
+}

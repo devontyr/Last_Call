@@ -1,83 +1,92 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Head from "next/head";
 import Select from "react-select";
 import styles from "../styles/Home.module.scss";
-import NavBar from "../components/NavBar"
-
+import NavBar from "../components/NavBar";
+import HomePage from "../components/HomePage"
+import AboutPage from "../components/AboutPage"
 
 function Home() {
+    const [crushName, setCrushName] = useState();
+    const [isSignedIn, setSignedIn] = useState(false);
+    const [recievedName, setRecievedName] = useState([]);
+    const [myName, setMyName] = useState("n/a");
 
-  const [currentName, setCurrentName] = useState()
-  const [recievedName, setRecievedName] = useState([])
+    const saveCrush = async () => {
+        const response = await fetch("/api/saveValue", {
+            method: "POST",
+            body: JSON.stringify({
+                myName: myName,
+                crushName: crushName,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+        getCrushList();
+        return data;
+    };
 
-  const saveUserName = async () => {
-    const response = await fetch("/api/saveValue", {
-      method: "POST",
-      body: JSON.stringify({
-        bodyData: {currentName},
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json()
-    console.log(data)
-    return data;
+    const getCrushList = async () => {
+        const response = await fetch("/api/getValue", {
+            method: "POST",
+            body: JSON.stringify({
+                user: myName,
+            }),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        const data = await response.json();
+        console.log(data);
+        setRecievedName(data);
+        return data;
+    };
 
-  };
+    const handleCrushName = (e) => {
+        console.log(e.target.value);
+        setCrushName(e.target.value);
+    };
 
+    const setNameFunction = (name) => {
+        setMyName(name);
+        getCrushList();
+    };
 
-  const getUserName = async () => {
-    const response = await fetch("/api/getValue", {
-      method: "POST",
-      body: JSON.stringify({
-        value: {currentName}
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json()
-    console.log(data)
-    setRecievedName(data)
-    return data;
-
-  };
-
-  function handleInputChange(e) {
-    setCurrentName(e.target.value)
-  }
-
-
-  return (
-    <div>
-{/* 
-      <NavBar/> */}
-
-      <div className={styles.container}>
-      DEMO
-      <input onChange={handleInputChange}>
-      </input>
-      <button onClick={() => saveUserName()}> Set name</button>
-      <br/>
-      <button onClick={() => getUserName()}> Get name</button>
-      {recievedName != undefined ? recievedName.map((value) => <div key = {value.id}> {value.exampleColumn} </div>) : " "}
-    </div> 
-
-
-    </div>
-  );
+    return (
+        <div>
+            {/* ternary expression if(myName = n/a), then show login button, else, show name of user logged in
+            {myName == "n/a" ? (
+                <div>
+                    {" "}
+                    Please sign in:
+                    <Login
+                        setName={setNameFunction}
+                        setSignedIn={setSignedIn}
+                    />
+                </div>
+            ) : (
+                <div>{myName}</div>
+            )}
+            <div className={styles.container}>
+                <br></br>
+                Crush Name: <input onChange={handleCrushName}></input>
+                <button onClick={() => saveCrush()}>Save Crush</button>
+                <br></br>
+                <br></br>
+                Your Crushes:
+                {recievedName != undefined
+                    ? recievedName.map((value) => (
+                          <div key={value.id}> {value.crushEmail} </div>
+                      ))
+                    : " "}
+            </div> */}
+            <AboutPage />
+        </div>
+    );
 }
 
 export default Home;
-
-
-
-
-
-
-
-
-
-
