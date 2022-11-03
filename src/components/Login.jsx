@@ -8,9 +8,13 @@ function Login(props) {
     const childRef = useRef();
     const [childState, setChildState] = useState(0);
 
-    function handleChange(e) {
+    function changeName(e) {
         // console.log()
         props.setName(e);
+    }
+    function changeID(e) {
+        // console.log()
+        props.setID(e);
     }
     return (
         <div>
@@ -18,8 +22,10 @@ function Login(props) {
                 onSuccess={(credentialResponse) => {
                     console.log(credentialResponse);
                     var decoded = jwt_decode(credentialResponse.credential);
-                    console.log(decoded.name);
-                    handleChange(decoded.name);
+                    console.log("decoded", decoded);
+                    changeName(decoded.name);
+                    changeID(decoded.sub);
+
                     // props.setSignedIn(true)
                 }}
                 onError={() => {
