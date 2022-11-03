@@ -1,15 +1,17 @@
+import React from "react";
 import styles from "../components/Home.module.css";
+import background from "./images/greenphone.jpg"
 
 function HomePage(){
     return (
-        <div>
+        <div style={{backgroundImage: `url(${background})`}}>
         <body>
             <header>
                 <h1>Last Call</h1>
-                {/* TODO: find background image */}
-            </header>
+                <background-image>
 
-            <hr/>
+                </background-image>
+            </header>
         </body>
         </div>
     )

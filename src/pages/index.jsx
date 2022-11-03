@@ -24,10 +24,6 @@ function Home() {
       </head>
     
       <Submit></Submit>
-
-      <footer>
-        <h3>Last Call</h3>
-      </footer>
     </div>    
   )
 }
