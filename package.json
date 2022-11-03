@@ -30,7 +30,7 @@
     "sass": "^1.49.9",
     "sassy-datepicker": "^0.8.0",
     "scss": "^0.2.4",
-    "sqlite3": "^5.0.9",
+    "sqlite3": "^5.1.2",
     "universal-cookie": "^4.0.4"
   },
   "devDependencies": {

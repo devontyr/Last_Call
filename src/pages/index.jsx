@@ -5,31 +5,36 @@ import Select from "react-select";
 import styles from "../styles/Home.module.scss";
 import NavBar from "../components/NavBar";
 import Login from "../components/Login";
-import Submit from "../components/Submit"
-import HomePage from "../components/HomePage"
-import AboutPage from "../components/AboutPage"
-
+import Submit from "../components/Submit";
+import HomePage from "../components/HomePage";
+import AboutPage from "../components/AboutPage";
 
 function Home() {
-  
+    const [page, setPage] = useState("HomePage");
+    const updatePage = (newPage) => {
+        setPage(newPage);
+    };
+    return (
+        <div>
+            <NavBar currentPage={page} updatePage={updatePage} />
+            {(() => {
+                switch (page) {
+                    case "HomePage":
+                        return <HomePage />;
+                    case "AboutPage":
+                        return <AboutPage />;
+                    case "SubmitPage":
+                        return <Submit />;
+                    default:
+                        return null;
+                }
+            })()}
 
-
-  return (
-    <div>
-      <head>
-        <title> Last Call </title>
-          <meta name="description" content="Last Call matches you with your mutual
-            crushes. Matches are sent exclusivley to Midd students who've participated in
-            Last Call and have both individually listed eachother as a crush." />
-      </head>
-    
-      <Submit></Submit>
-
-      <footer>
-        <h3>Last Call</h3>
-      </footer>
-    </div>    
-  )
+            <footer>
+                <h3>Last Call</h3>
+            </footer>
+        </div>
+    );
 }
 
 export default Home;
