@@ -1,16 +1,20 @@
+import { width } from "@mui/system";
 import React from "react";
 import styles from "../components/Home.module.css";
-import background from "./images/greenphone.jpg"
 
 function HomePage(){
     return (
-        <div style={{backgroundImage: `url(${background})`}}>
+        <div style={{
+            backgroundImage: "url(/images/greenphone.jpg)",
+            backgroundPosition: "center",
+            backgroundSize: "cover",
+            backgroundRepeat: "no-repeat",
+            width: '100vw',
+            height: '100vh'   
+        }}>
         <body>
             <header>
                 <h1>Last Call</h1>
-                <background-image>
-
-                </background-image>
             </header>
         </body>
         </div>
