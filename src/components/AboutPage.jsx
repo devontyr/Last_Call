@@ -3,20 +3,8 @@ import styles from "./AboutPage.module.css";
 function AboutPage(){
     return (
         <div>
-        <head>
-            <title> Last Call | About </title>
-            <meta name="description" content="Last Call matches you with your mutual
-            crushes. Matches are sent exclusivley to Midd students who've participated in
-            Last Call and have both individually listed eachother as a crush." />
-        </head>
         <body>
             <header class="main_header">
-                <nav>
-                    <ul>
-                        <li>Home</li>
-                        <li>About</li>
-                    </ul>
-                </nav>
                 <hr/>
                 <h1>Last Call</h1>
                 <button>Submit a Crush</button>
@@ -37,10 +25,6 @@ function AboutPage(){
                     does not list Suzie as one of hers. Nothing happens. Suzie's secret crush 
                     remains a secret. Love will have to find another way. </p>
             </section>
-            <hr/>
-            <footer>
-                <h3>Last Call</h3>
-            </footer>
         </body>
         </div>
     )

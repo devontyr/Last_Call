@@ -4,87 +4,87 @@ import Head from "next/head";
 import Select from "react-select";
 import styles from "../styles/Home.module.scss";
 import NavBar from "./NavBar";
+import Login from "./Login";
 
 
 function Submit() {
+  const [crushName, setCrushName] = useState();
+  const [isSignedIn, setSignedIn] = useState(false);
+  const [recievedName, setRecievedName] = useState([]);
+  const [myName, setMyName] = useState("n/a");
 
-  const [currentName, setCurrentName] = useState()
-  const [recievedName, setRecievedName] = useState([])
-
-  const saveUserName = async () => {
-    const response = await fetch("/api/saveValue", {
-      method: "POST",
-      body: JSON.stringify({
-        bodyData: {currentName},
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json()
-    console.log(data)
-    return data;
+  const saveCrush = async () => {
+      const response = await fetch("/api/saveValue", {
+          method: "POST",
+          body: JSON.stringify({
+              myName: myName,
+              crushName: crushName,
+          }),
+          headers: {
+              "Content-Type": "application/json",
+          },
+      });
+      const data = await response.json();
+      console.log(data);
+      getCrushList();
+      return data;
   };
 
-
-  const getUserName = async () => {
-    const response = await fetch("/api/getValue", {
-      method: "POST",
-      body: JSON.stringify({
-        value: {currentName}
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const data = await response.json()
-    console.log(data)
-    setRecievedName(data)
-    return data;
+  const getCrushList = async () => {
+      const response = await fetch("/api/getValue", {
+          method: "POST",
+          body: JSON.stringify({
+              user: myName,
+          }),
+          headers: {
+              "Content-Type": "application/json",
+          },
+      });
+      const data = await response.json();
+      console.log(data);
+      setRecievedName(data);
+      return data;
   };
 
-  function handleInputChange(e) {
-    setCurrentName(e.target.value)
-  }
+  const handleCrushName = (e) => {
+      console.log(e.target.value);
+      setCrushName(e.target.value);
+  };
+
+  const setNameFunction = (name) => {
+      setMyName(name);
+      getCrushList();
+  };
 
   return (
-    <div>
-        <head>
-            <title> Last Call | Home </title>
-            <meta name="description" content="Last Call matches you with your mutual
-            crushes. Matches are sent exclusivley to Midd students who've participated in
-            Last Call and have both individually listed eachother as a crush." />
-        </head>
-        <body>
-            <header>
-                <nav>
-                    <ul>
-                        <li><a href="HomePage.jsx">Home</a></li>
-                        <li><a href="AboutPage.jsx">About</a></li>
-                        <li><a href="Submit.jsx">Submit a Crush</a></li>
-                    </ul>
-                </nav>
-                <hr/>
-                <h1>Last Call</h1>
-                {/* TODO: find background image */}
-            </header>
-
-            {/* <NavBar/> */}
-            <div className={styles.container}>
-                Email address (ie. jdoe@middlebury.edu)
-                <input onChange={handleInputChange}></input>
-                <button onClick={() => saveUserName()}> Submit Name</button>
-                <br/>
-                <button onClick={() => getUserName()}> Get name</button>
-                {recievedName != undefined ? recievedName.map((value) => <div key = {value.id}> {value.exampleColumn} </div>) : " "}
-            </div> 
-
-            <hr/>
-            <footer>
-                <h3>Last Call</h3>
-            </footer>
-        </body>
-        </div>
+      <div>
+          {/* ternary expression if(myName = n/a), then show login button, else, show name of user logged in */}
+          {myName == "n/a" ? (
+              <div>
+                  {" "}
+                  Please sign in:
+                  <Login
+                      setName={setNameFunction}
+                      setSignedIn={setSignedIn}
+                  />
+              </div>
+          ) : (
+              <div>{myName}</div>
+          )}
+          <div className={styles.container}>
+              <br></br>
+              Crush Name: <input onChange={handleCrushName}></input>
+              <button onClick={() => saveCrush()}>Save Crush</button>
+              <br></br>
+              <br></br>
+              Your Crushes:
+              {recievedName != undefined
+                  ? recievedName.map((value) => (
+                        <div key={value.id}> {value.crushEmail} </div>
+                    ))
+                  : " "}
+          </div>
+      </div>
   );
 }
 
