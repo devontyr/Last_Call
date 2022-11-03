@@ -16,11 +16,16 @@ function Submit() {
     const [myName, setMyName] = useState("n/a");
     const [myID, setMyId] = useState("n/a");
 
+    useEffect(() => {
+        // Update the document title using the browser API
+        getCrushList();
+    });
+
     const saveCrush = async () => {
         const response = await fetch("/api/saveValue", {
             method: "POST",
             body: JSON.stringify({
-                myName: myName,
+                myName: myID,
                 crushName: crushName,
             }),
             headers: {
