@@ -2,10 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useForm, Controller } from "react-hook-form";
 import Head from "next/head";
 import Select from "react-select";
-import styles from "../styles/Home.module.scss";
 import NavBar from "../components/NavBar";
 import Login from "../components/Login";
-import Submit from "../components/Submit";
+// import Submit from "../components/Submit";
 import HomePage from "../components/HomePage";
 import AboutPage from "../components/AboutPage";
 
@@ -30,9 +29,12 @@ function Home() {
                 }
             })()}
 
-            <footer>
-                <h3>🤫🤫🤫 Last Call 🤫🤫🤫</h3>
-            </footer>
+        <footer className="footer">
+          <p className="footer_text">
+            🤫🤫🤫 Last Call 🤫🤫🤫
+          </p>
+        </footer>
+
         </div>
     );
 }

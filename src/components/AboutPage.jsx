@@ -14,7 +14,7 @@ function AboutPage(){
                     want! There is no limit on love. Matches are sent exclusivley to Midd 
                     students who've participated in Last Call and have both individually 
                     listed eachother as a crush. </h4>
-                <img src="/images/greenphone.jpg" alt="greenphone" />;
+                <img src="/images/greenphone.jpg" alt="greenphone" />
                 <p>For example, take Jane and John. Jane lists John as her crush. 
                     John lists Jane as his crush. Last call sends both Jane and John
                     a notification that they have matched as eachothers' crushes. A love

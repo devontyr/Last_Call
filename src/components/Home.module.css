@@ -2,6 +2,13 @@
     background-color: rgb(194, 20, 93);
 }
 
+.title_text {
+    font-family: 'OCR A Std', monospace;
+    color: rgb(253, 4, 4);
+    font-weight: 500;
+    font-size: 30px;
+}
+
 /* .box { 
     height: 2rem;
     width: 2rem;

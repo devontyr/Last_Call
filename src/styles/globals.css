@@ -1,7 +1,31 @@
-/* html,
-body {
+html,
+/* body {
   padding: 5px;
   margin: 0;
   background-color: #eaf8d3;
   font-family: -apple-system, Bookman, URW Bookman L, serif;
 } */
+
+* {
+    margin: 0;
+    padding: 5px;
+}
+
+.background {
+    background-color: #eaf8d3;
+    background-blend-mode: darken;
+    background-size: cover;
+}
+
+.footer {
+    background-color: #7f9c4f;
+}
+
+.footer_text {
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'OCR A Std', monospace;
+    display: flex;
+    justify-content: center;
+    color: rgb(243, 242, 198);
+}

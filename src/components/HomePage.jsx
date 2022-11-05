@@ -1,4 +1,4 @@
-import { width } from "@mui/system";
+import { flexbox, width } from "@mui/system";
 import React from "react";
 import styles from "../components/Home.module.css";
 
@@ -14,7 +14,7 @@ function HomePage(){
         }}>
         <body>
             <header>
-                <h1>Last Call</h1>
+                <h1 className="title_text"> Last Call </h1>
             </header>
         </body>
         </div>
